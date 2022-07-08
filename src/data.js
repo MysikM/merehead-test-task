@@ -1,0 +1,1 @@
+export const USERS_API = 'http://23.88.43.148/users';
