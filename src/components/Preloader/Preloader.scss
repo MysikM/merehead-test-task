@@ -1,0 +1,25 @@
+@use '../../sass' as *;
+
+.preload {
+  @include flex();
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  border: 5px solid $blue;
+  border-right-color: transparent;
+  animation-name: preloader;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  align-self: center;
+  margin: 1rem auto;
+}
+
+@keyframes preloader {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
