@@ -40,7 +40,7 @@ const UsersList = () => {
         <ul className='users-list'>
             {userDisplay.map((user) => (<User {...user} />))}
             {loading && <Preloader />}
-            {isViewMore && (<button onClick={loadMoreUser}>Load more</button>)}
+            {isViewMore && (<button className='users-list--btn btn' onClick={loadMoreUser}>Load more</button>)}
         </ul>
     );
 };

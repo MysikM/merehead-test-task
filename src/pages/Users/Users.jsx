@@ -1,12 +1,12 @@
 import UsersList from "../../components/UsersList/UsersList";
-
+import './users.scss'
 
 const Users = () => {
 
     return (
-        <div>
+        <main className='users-page'>
             <UsersList/>
-        </div>
+        </main>
     );
 };
 

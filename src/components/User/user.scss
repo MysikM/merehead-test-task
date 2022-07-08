@@ -1,1 +1,22 @@
 @use '../../sass' as *;
+
+.users-list {
+  &--item {
+    margin-top: 1rem;
+  }
+
+  &--name-container {
+    @include flex(flex-start, flex-start);
+    gap: 10px;
+  }
+
+  &--btn {
+    color: $orange;
+  }
+
+  p {
+    span {
+      color: $blue;
+    }
+  }
+}

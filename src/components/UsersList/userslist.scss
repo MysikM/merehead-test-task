@@ -1,1 +1,11 @@
 @use '../../sass' as *;
+
+.users-list {
+
+  &--btn {
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
