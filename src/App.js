@@ -1,10 +1,9 @@
 import './App.scss';
+import Navigation from "./navigation/Navigation";
 
 function App() {
   return (
-    <div>
-      test
-    </div>
+    <Navigation />
   );
 }
 

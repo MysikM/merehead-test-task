@@ -1,0 +1,50 @@
+@use '../../sass' as *;
+
+.header {
+  margin-bottom: 2rem;
+  &--navigation {
+    padding: 1rem 2rem;
+    @include flex(center, space-between);
+    box-shadow: 0 5px 10px 0 #aaa;
+    img {
+      width: 125px;
+      height: 125px;
+      border: 2px solid $text-color;
+      border-radius: 100%;
+    }
+  }
+
+  &--links {
+    @include flex();
+    gap: 20px;
+  }
+
+  &--link {
+    position: relative;
+    font-size: 1.5rem;
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      border-radius: 4px;
+      background-color: $text-color;
+      bottom: -2px;
+      left: 0;
+      transform-origin: right;
+      transform: scaleX(0);
+      transition: transform .3s ease-in-out;
+    }
+
+    &:hover::before {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+
+    &.active{
+      &::before{
+        transform: scaleX(1);
+      }
+    }
+  }
+}
