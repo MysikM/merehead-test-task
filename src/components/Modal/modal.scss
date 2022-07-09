@@ -1,0 +1,58 @@
+@use '../../sass' as *;
+
+.modal {
+  position: fixed;
+  display: none;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0,0,0, 0.2);
+  cursor: pointer;
+
+  &__active {
+    display: block;
+  }
+
+  &--wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 255px;
+    height: 255px;
+    background-color: $background;
+    color: $text-color;
+    @include flex();
+    flex-direction: column;
+  }
+  &--btn-container {
+    @include flex();
+    gap: 10px;
+  }
+  &--title {
+    padding: 1rem;
+  }
+
+  &--btn {
+    width: 100px;
+    border-color: $primary;
+    color: $primary;
+    font-weight: bold;
+
+    &:hover {
+      background-color: $primary;
+      color: $text-color;
+    }
+  }
+
+  &--btn-danger {
+    border-color: $crimson;
+    color: $crimson;
+
+    &:hover {
+      background-color: $crimson;
+      color: $text-color;
+    }
+  }
+}
