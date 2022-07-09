@@ -6,7 +6,8 @@ const CustomTextarea = ({title, nameTextarea, setFunc}) => {
             <textarea
                 className="form__field form__textarea"
                 placeholder="Name"
-                name={nameTextarea}
+                name={title}
+                value={nameTextarea}
                 onChange={(e) => setFunc(e.target.value)}
                 id='name'
                 required

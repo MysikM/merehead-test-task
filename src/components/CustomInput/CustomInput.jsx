@@ -7,7 +7,8 @@ const CustomInput = ({title, inputName, setFunc}) => {
                    type="text"
                    className="form__field"
                    placeholder="Name"
-                   name={inputName}
+                   name={title}
+                   value={inputName}
                    onChange={(e) => setFunc(e.target.value)}
                    id='name'
                    required

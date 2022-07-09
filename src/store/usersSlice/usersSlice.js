@@ -1,5 +1,5 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import {USERS_API} from "../../data";
+import {USER_API, USERS_API} from "../../data";
 import axios from "axios";
 
 export const fetchUsers = createAsyncThunk(
@@ -43,6 +43,22 @@ export const postCreateNewUser = createAsyncThunk(
             return thunkAPI.rejectWithValue(e);
         }
     }
+);
+
+export const getUserById = createAsyncThunk(
+    'user/getUserById',
+    async (id, thunkAPI) => {
+        try{
+            const response = await axios.get(`${USER_API}/${id}`);
+            const data = await response.data;
+            if(data?.message) {
+                throw new Error(data?.message);
+            }
+            return data;
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
 )
 
 const initialState = {
@@ -53,7 +69,7 @@ const initialState = {
     success: false,
 };
 
-const bearSlice = createSlice({
+const usersSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
@@ -87,7 +103,23 @@ const bearSlice = createSlice({
             state.loading = false;
             state.error = action.payload.message;
         },
+        [getUserById.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+            state.success = false;
+        },
+        [getUserById.fulfilled]: (state, action) => {
+            state.loading = true;
+            state.error = null;
+            state.success = false;
+            state.user = action.payload;
+        },
+        [getUserById.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload.message;
+        },
+
     }
 })
 
-export default bearSlice.reducer
+export default usersSlice.reducer

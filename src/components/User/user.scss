@@ -19,4 +19,22 @@
       color: $blue;
     }
   }
+
+  &--edit {
+    color: $primary;
+    transition: 0.2s;
+    &:hover {
+      color: $orange;
+    }
+  }
+
+  &--delete{
+    color: $crimson;
+    opacity: 0.9;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
 }
