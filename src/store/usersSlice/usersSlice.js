@@ -59,7 +59,35 @@ export const getUserById = createAsyncThunk(
             return thunkAPI.rejectWithValue(e);
         }
     }
-)
+);
+
+export const postEditUserById = createAsyncThunk(
+    'user/postCreateNewUser',
+    async (editUser, thunkAPI) => {
+
+        try{
+            const {user_id} = editUser;
+            const response = await axios.put(`${USER_API}/${user_id}`, {
+                ...editUser
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const data = await response.data;
+            if(data?.message) {
+                throw new Error(data?.message);
+            }
+            if (data.status === 200) {
+                return data
+            }
+
+        } catch (e) {
+            return thunkAPI.rejectWithValue(e);
+        }
+    }
+);
 
 const initialState = {
     users: [],
@@ -73,21 +101,29 @@ const usersSlice = createSlice({
     name: 'users',
     initialState,
     reducers: {
+        resetUser: (state) => {
+            state.user = {}
+        },
+        resetUsers: (state) => {
+            state.users = []
+        }
     },
     extraReducers: {
         [fetchUsers.pending]: (state)=> {
             state.loading = true;
             state.error = null;
             state.success = false;
+            state.users = [];
         },
         [fetchUsers.fulfilled]: (state, action)=> {
             state.loading = false;
             state.error = null;
-            state.users = [...action.payload];
+            state.users = action.payload;
         },
         [fetchUsers.rejected]: (state, action)=> {
             state.loading = false;
             state.error = action.payload.message;
+            state.users = [];
         },
         [postCreateNewUser.pending]: (state) => {
             state.loading = true;
@@ -109,7 +145,7 @@ const usersSlice = createSlice({
             state.success = false;
         },
         [getUserById.fulfilled]: (state, action) => {
-            state.loading = true;
+            state.loading = false;
             state.error = null;
             state.success = false;
             state.user = action.payload;
@@ -118,8 +154,22 @@ const usersSlice = createSlice({
             state.loading = false;
             state.error = action.payload.message;
         },
+        [postEditUserById.pending]: (state) => {
+            state.loading = true;
+            state.error = null;
+            state.success = false;
+        },
+        [postEditUserById.fulfilled]: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.success = true;
+        },
+        [postEditUserById.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload.message;
+        },
 
     }
 })
-
+export const {resetUser, resetUsers} = usersSlice.actions;
 export default usersSlice.reducer
