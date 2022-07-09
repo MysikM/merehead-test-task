@@ -12,6 +12,7 @@ const Navigation = () => {
             <Routes>
                 <Route path="/" element={<Navigate to='/users' />} />
                 <Route path="/users" element={<Users />} />
+                <Route path="/merehead-test-task" element={<Navigate to='/users' />} />
                 <Route path='/user-config' element={<UserConfig />} />
                 <Route path='/user-config/:id' element={<UserConfig />} />
                 <Route path="*" element={<NotFound />} />
