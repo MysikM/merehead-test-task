@@ -1,0 +1,30 @@
+@use '../../sass' as *;
+
+.user-config {
+  margin-left: 2rem;
+  width: 500px;
+
+  &__btn{
+    width: 50%;
+    font-weight: bold;
+
+
+    &:hover {
+      background-color: $orange;
+      color: $text-color;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+
+    &:disabled {
+      cursor: none;
+      background-color: transparent;
+
+      &:hover {
+        color: $orange;
+        opacity: 1;
+      }
+    }
+  }
+}
