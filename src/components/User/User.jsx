@@ -16,7 +16,7 @@ const User = ({ user_id ,desc, name, surname}) => {
                 <p className='users-list--delete' onClick={()=>{
                     setIsModalActive(true)}}>Delete</p>
             </div>
-            <Modal isModalActive={isModalActive} setIsModalActive={setIsModalActive}/>
+            <Modal id={user_id} isModalActive={isModalActive} setIsModalActive={setIsModalActive}/>
             {desc && (<p>Description: <span>{isSeeMore ? desc : `${desc.slice(0, 18)}` }</span> {desc?.length > 20 && <button className='users-list--btn' onClick={handleClick}>{isSeeMore ? 'Hide' : 'See More'}</button>}</p>)}
         </li>
     );
